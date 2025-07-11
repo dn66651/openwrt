@@ -1,0 +1,2 @@
+- name: Check Files
+  run: ls -al
