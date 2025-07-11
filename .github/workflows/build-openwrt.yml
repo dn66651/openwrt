@@ -22,7 +22,8 @@ jobs:
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          mv config.backup .config
+          mv config.backup openwrt/.config
+          cd openwrt
           make defconfig
           make -j$(nproc)
 
