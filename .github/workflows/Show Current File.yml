@@ -1,0 +1,7 @@
+- name: Show Current Files
+  run: ls -al
+
+- name: Copy Config
+  run: |
+    cp -f config.github .config
+    ls -l .config
