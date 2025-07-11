@@ -6,24 +6,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Set up environment
         run: |
-          sudo apt update && sudo apt upgrade
+          sudo apt update && sudo apt upgrade -y
           sudo apt install -y build-essential clang flex bison g++ gawk gcc-multilib \
           gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev
 
       - name: Clone OpenWrt source
         run: |
           git clone https://github.com/openwrt/openwrt.git
+          cp config.backup openwrt/.config   # ✅ 把配置文件复制进去
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          mv config.backup openwrt/.config
-          cd openwrt
           make defconfig
           make -j$(nproc)
 
