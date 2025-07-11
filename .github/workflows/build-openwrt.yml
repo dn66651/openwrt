@@ -5,14 +5,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Set up environment
         run: |
-          sudo apt update
+          sudo apt update && sudo apt upgrade
           sudo apt install -y build-essential clang flex bison g++ gawk gcc-multilib \
           gettext git libncurses-dev libssl-dev python3-distutils rsync unzip zlib1g-dev
 
